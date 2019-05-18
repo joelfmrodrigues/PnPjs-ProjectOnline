@@ -6,16 +6,29 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
+import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'ProjectOnlineWebPartStrings';
-import ProjectOnline from './components/ProjectOnline';
-import { IProjectOnlineProps } from './components/IProjectOnlineProps';
+import ProjectOnline from './components/ProjectOnline/ProjectOnline';
+import { IProjectOnlineProps } from './components/ProjectOnline/IProjectOnlineProps';
 
 export interface IProjectOnlineWebPartProps {
   description: string;
 }
 
 export default class ProjectOnlineWebPart extends BaseClientSideWebPart<IProjectOnlineWebPartProps> {
+
+  public onInit(): Promise<void> {
+
+    return super.onInit().then(_ => {
+
+      // other init code may be present
+
+      pnpSetup({
+        spfxContext: this.context
+      });
+    });
+  }
 
   public render(): void {
     const element: React.ReactElement<IProjectOnlineProps > = React.createElement(
