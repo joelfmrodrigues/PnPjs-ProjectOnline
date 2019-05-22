@@ -15,6 +15,9 @@ export class Projects extends React.Component<IProjectsProps, {}> {
         <Button text='Get all projects' onClick={this._getAllProjects}></Button>
         <Button text='Get project by Id' onClick={this._getProjectById}></Button>
         <Button text='Add project' onClick={this._addProject}></Button>
+        <Button text='Update project' onClick={this._updateProject}></Button>
+        <Button text='Submit Workflow' onClick={this._updateProjectWorkflow}></Button>
+        <Button text='Delete project' onClick={this._deleteProject}></Button>
       </div>
     );
   }
@@ -22,6 +25,18 @@ export class Projects extends React.Component<IProjectsProps, {}> {
   private _getAllProjects = async () => {
     const projects: ProjectCollection[] = await project.projects.get();
     console.log('Projects', projects);
+
+  }
+
+  private _addProject = async () => {
+    const proj: CommandResult<PublishedProject> = await project.projects.add({
+      Name: 'JR test ' + Date.now(),
+      Description: 'Test project',
+      EnterpriseProjectTypeId: '7ca316cc-b347-e711-80d1-00155d3c701a'
+    });
+
+    this._projId = proj.data.Id;
+    console.log(proj);
 
   }
 
@@ -74,21 +89,20 @@ export class Projects extends React.Component<IProjectsProps, {}> {
 
     const tasks: PublishedTaskCollection[] = await project.projects.getById(this._projId).tasks.get();
     console.log('Tasks', tasks);
+  }
 
-
+  private _updateProject = async () => {
+    // TODO: not working
     const checkedOutProject: CommandResult<DraftProject> = await project.projects.getById(this._projId).checkOut();
     console.log('CheckOut', checkedOutProject);
 
-    const submitToWorkflow: void = await project.projects.getById(this._projId).submitToWorkflow();
-    console.log('Submit To Workflow', submitToWorkflow);
-
-    // const updateValue: TypedHash<string> = {
-    //   'Description': 'Updated project ' + Date.now()
-    // };
-    // const update: CommandResult<QueueJob> = await checkedOutProject.instance.update(
-    //   updateValue
-    // );
-    // console.log('Update', update);
+    const updateValue: TypedHash<string> = {
+      'Description': 'Updated project ' + Date.now()
+    };
+    const update: CommandResult<QueueJob> = await checkedOutProject.instance.update(
+      updateValue
+    );
+    console.log('Update', update);
 
     const publish: CommandResult<QueueJob> = await checkedOutProject.instance.publish(false);
     console.log('Publish', publish);
@@ -96,22 +110,24 @@ export class Projects extends React.Component<IProjectsProps, {}> {
     const checkIn: CommandResult<QueueJob> = await checkedOutProject.instance.checkIn(true);
     console.log('Check In', checkIn);
 
-    const publishedProject2: PublishedProject = await project.projects.getById(this._projId).get();
+  }
+
+  private _updateProjectWorkflow = async () => {
+    // TODO: not working
+    const publishedProject: PublishedProject = await project.projects.getById(this._projId).get();
     console.log('Project', publishedProject);
 
-    // const deleteJob: CommandResult<QueueJob> = await publishedProject2.delete();
-    // console.log('Delete', deleteJob);
+    const submitToWorkflow: void = await project.projects.getById(this._projId).submitToWorkflow();
+    console.log('Submit To Workflow', submitToWorkflow);
   }
 
-  private _addProject = async () => {
-    const proj: CommandResult<PublishedProject> = await project.projects.add({
-      Name: 'JR test ' + Date.now(),
-      Description: 'Test project',
-      EnterpriseProjectTypeId: '7ca316cc-b347-e711-80d1-00155d3c701a'
-    });
+  private _deleteProject = async () => {
+    // TODO: not working
+    const publishedProject: PublishedProject = await project.projects.getById(this._projId).get();
+    console.log('Project', publishedProject);
 
-    this._projId = proj.data.Id;
-    console.log(proj);
-
+    const deleteJob: CommandResult<QueueJob> = await publishedProject.delete();
+    console.log('Delete', deleteJob);
   }
+
 }
