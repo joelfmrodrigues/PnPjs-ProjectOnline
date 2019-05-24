@@ -23,7 +23,6 @@ export class Projects extends React.Component<IProjectsProps, {}> {
   private _getAllProjects = async () => {
     const projects: ProjectCollection[] = await project.projects.get();
     console.log('Projects', projects);
-
   }
 
   private _addProject = async () => {
@@ -32,9 +31,7 @@ export class Projects extends React.Component<IProjectsProps, {}> {
       Description: 'Test project',
       EnterpriseProjectTypeId: '7ca316cc-b347-e711-80d1-00155d3c701a'
     });
-
     console.log(proj);
-
   }
 
   private _getProjectById = async () => {
