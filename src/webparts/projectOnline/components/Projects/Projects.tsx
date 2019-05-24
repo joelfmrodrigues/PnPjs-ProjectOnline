@@ -7,8 +7,6 @@ import { TypedHash } from '@pnp/common';
 
 export class Projects extends React.Component<IProjectsProps, {}> {
 
-  private _projId: string = null;
-
   public render(): React.ReactElement<IProjectsProps> {
     return (
       <div className={styles.projects}>
@@ -35,65 +33,63 @@ export class Projects extends React.Component<IProjectsProps, {}> {
       EnterpriseProjectTypeId: '7ca316cc-b347-e711-80d1-00155d3c701a'
     });
 
-    this._projId = proj.data.Id;
     console.log(proj);
 
   }
 
   private _getProjectById = async () => {
 
-    const publishedProject: PublishedProject = await project.projects.getById(this._projId).get();
+    const publishedProject: PublishedProject = await project.projects.getById(this.props.projectId).get();
     console.log('Project', publishedProject);
 
-    const user: User = await project.projects.getById(this._projId).checkedOutBy.get();
+    const user: User = await project.projects.getById(this.props.projectId).checkedOutBy.get();
     console.log('Checked out by', user);
 
-    const customFields: CustomFieldCollection[] = await project.projects.getById(this._projId).customFields.get();
+    const customFields: CustomFieldCollection[] = await project.projects.getById(this.props.projectId).customFields.get();
     console.log('Custom Fields', customFields);
 
-    const enterpriseProjectType: CustomFieldCollection = await project.projects.getById(this._projId).enterpriseProjectType.get();
+    const enterpriseProjectType: CustomFieldCollection = await project.projects.getById(this.props.projectId).enterpriseProjectType.get();
     console.log('Enterprise Project Type', enterpriseProjectType);
 
-    const phase: Phase = await project.projects.getById(this._projId).phase.get();
+    const phase: Phase = await project.projects.getById(this.props.projectId).phase.get();
     console.log('Phase', phase);
 
-    const projectSummaryTask: ProjectSummaryTask = await project.projects.getById(this._projId).projectSummaryTask.get();
+    const projectSummaryTask: ProjectSummaryTask = await project.projects.getById(this.props.projectId).projectSummaryTask.get();
     console.log('Project Summary Task', projectSummaryTask);
 
-    const queueJobs: QueueJobCollection[] = await project.projects.getById(this._projId).queueJobs.get();
+    const queueJobs: QueueJobCollection[] = await project.projects.getById(this.props.projectId).queueJobs.get();
     console.log('Queue Jobs', queueJobs);
 
-    const stage: Stage = await project.projects.getById(this._projId).stage.get();
+    const stage: Stage = await project.projects.getById(this.props.projectId).stage.get();
     console.log('Stage', stage);
 
-    const assignments: PublishedAssignmentCollection[] = await project.projects.getById(this._projId).assignments.get();
+    const assignments: PublishedAssignmentCollection[] = await project.projects.getById(this.props.projectId).assignments.get();
     console.log('Assignments', assignments);
 
-    const calendar: Calendar = await project.projects.getById(this._projId).calendar.get();
+    const calendar: Calendar = await project.projects.getById(this.props.projectId).calendar.get();
     console.log('Calendar', calendar);
 
-    const draft: DraftProject = await project.projects.getById(this._projId).draft.get();
+    const draft: DraftProject = await project.projects.getById(this.props.projectId).draft.get();
     console.log('Draft', draft);
 
-    const includeCustomFields: PublishedProject = await project.projects.getById(this._projId).includeCustomFields.get();
+    const includeCustomFields: PublishedProject = await project.projects.getById(this.props.projectId).includeCustomFields.get();
     console.log('Include Custom Fields', includeCustomFields);
 
-    const owner: User = await project.projects.getById(this._projId).owner.get();
+    const owner: User = await project.projects.getById(this.props.projectId).owner.get();
     console.log('Owner', owner);
 
-    const projectResources: PublishedProjectResourceCollection[] = await project.projects.getById(this._projId).projectResources.get();
+    const projectResources: PublishedProjectResourceCollection[] = await project.projects.getById(this.props.projectId).projectResources.get();
     console.log('Project Resources', projectResources);
 
-    const taskLinks: PublishedTaskLinkCollection[] = await project.projects.getById(this._projId).taskLinks.get();
+    const taskLinks: PublishedTaskLinkCollection[] = await project.projects.getById(this.props.projectId).taskLinks.get();
     console.log('Task Links', taskLinks);
 
-    const tasks: PublishedTaskCollection[] = await project.projects.getById(this._projId).tasks.get();
+    const tasks: PublishedTaskCollection[] = await project.projects.getById(this.props.projectId).tasks.get();
     console.log('Tasks', tasks);
   }
 
   private _updateProject = async () => {
-    // TODO: not working
-    const checkedOutProject: CommandResult<DraftProject> = await project.projects.getById(this._projId).checkOut();
+    const checkedOutProject: CommandResult<DraftProject> = await project.projects.getById(this.props.projectId).checkOut();
     console.log('CheckOut', checkedOutProject);
 
     const updateValue: TypedHash<string> = {
@@ -109,24 +105,15 @@ export class Projects extends React.Component<IProjectsProps, {}> {
 
     const checkIn: CommandResult<QueueJob> = await checkedOutProject.instance.checkIn(true);
     console.log('Check In', checkIn);
-
   }
 
   private _updateProjectWorkflow = async () => {
-    // TODO: not working
-    const publishedProject: PublishedProject = await project.projects.getById(this._projId).get();
-    console.log('Project', publishedProject);
-
-    const submitToWorkflow: void = await project.projects.getById(this._projId).submitToWorkflow();
+    const submitToWorkflow: void = await project.projects.getById(this.props.projectId).submitToWorkflow();
     console.log('Submit To Workflow', submitToWorkflow);
   }
 
   private _deleteProject = async () => {
-    // TODO: not working
-    const publishedProject: PublishedProject = await project.projects.getById(this._projId).get();
-    console.log('Project', publishedProject);
-
-    const deleteJob: CommandResult<QueueJob> = await publishedProject.delete();
+    const deleteJob: CommandResult<QueueJob> = await project.projects.getById(this.props.projectId).delete();
     console.log('Delete', deleteJob);
   }
 

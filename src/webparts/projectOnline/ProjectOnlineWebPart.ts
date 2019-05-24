@@ -9,8 +9,8 @@ import {
 import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'ProjectOnlineWebPartStrings';
-import ProjectOnline from './components/ProjectOnline/ProjectOnline';
-import { IProjectOnlineProps } from './components/ProjectOnline/IProjectOnlineProps';
+import { ProjectOnline } from './components/ProjectOnline';
+import { IProjectOnlineProps } from './components/ProjectOnline';
 
 export interface IProjectOnlineWebPartProps {
   description: string;
@@ -31,7 +31,7 @@ export default class ProjectOnlineWebPart extends BaseClientSideWebPart<IProject
   }
 
   public render(): void {
-    const element: React.ReactElement<IProjectOnlineProps > = React.createElement(
+    const element: React.ReactElement<IProjectOnlineProps> = React.createElement(
       ProjectOnline,
       {
         description: this.properties.description
