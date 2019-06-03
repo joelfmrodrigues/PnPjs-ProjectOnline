@@ -22,30 +22,30 @@ export class ProjectTasks extends React.Component<IProjectTasksProps, {}> {
 
   private _getProjectTaskById = async () => {
 
-    const taskId = '3a701829-2d77-e911-8166-000d3a6dc32c';
+    const id = '3a701829-2d77-e911-8166-000d3a6dc32c';
 
-    const publishedTask: PublishedTask = await project.projects.getById(this.props.projectId).tasks.getById('').get();
+    const publishedTask: PublishedTask = await project.projects.getById(this.props.projectId).tasks.getById(id).get();
     console.log('Published task', publishedTask);
 
-    const publishedAssignmentCollection: PublishedAssignmentCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(taskId).assignments.get();
+    const publishedAssignmentCollection: PublishedAssignmentCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(id).assignments.get();
     console.log('Published Assignment Collection', publishedAssignmentCollection);
 
-    const calendar: Calendar = await project.projects.getById(this.props.projectId).tasks.getById(taskId).calendar.get();
+    const calendar: Calendar = await project.projects.getById(this.props.projectId).tasks.getById(id).calendar.get();
     console.log('Calendar', calendar);
 
-    const customFieldCollection: CustomFieldCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(taskId).customFields.get();
+    const customFieldCollection: CustomFieldCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(id).customFields.get();
     console.log('Custom Field Collection', customFieldCollection);
 
-    const parentTaskLink: PublishedTask = await project.projects.getById(this.props.projectId).tasks.getById(taskId).parent.get();
+    const parentTaskLink: PublishedTask = await project.projects.getById(this.props.projectId).tasks.getById(id).parent.get();
     console.log('Parent Task Link', parentTaskLink);
 
-    const predecessorTasks: PublishedTaskLinkCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(taskId).predecessors.get();
+    const predecessorTasks: PublishedTaskLinkCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(id).predecessors.get();
     console.log('Predecessor Tasks', predecessorTasks);
 
-    const successorTasks: PublishedTaskLinkCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(taskId).successors.get();
+    const successorTasks: PublishedTaskLinkCollection[] = await project.projects.getById(this.props.projectId).tasks.getById(id).successors.get();
     console.log('Successor Tasks', successorTasks);
 
-    const statusManager: User = await project.projects.getById(this.props.projectId).tasks.getById(taskId).statusManager.get();
+    const statusManager: User = await project.projects.getById(this.props.projectId).tasks.getById(id).statusManager.get();
     console.log('Status Manager', statusManager);
 
   }
