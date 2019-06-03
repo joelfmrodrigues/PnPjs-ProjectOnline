@@ -14,8 +14,8 @@ export class Calendars extends React.Component<ICalendarsProps, {}> {
       <div className={styles.calendars}>
         <Button text='Get all calendars' onClick={this._getAllCalendars}></Button>
         <Button text='Get calendar by Id' onClick={this._getCalendarById}></Button>
-        <Button text='Add calendar' onClick={this._addCalendar}></Button>
-        <Button text='Add calendar exception' onClick={this._addCalendarException}></Button>
+        {/* <Button text='Add calendar' onClick={this._addCalendar}></Button> */}
+        {/* <Button text='Add calendar exception' onClick={this._addCalendarException}></Button> */}
         <Button text='Copy calendar' onClick={this._copyCalendar}></Button>
         <Button text='Delete calendar' onClick={this._deleteCalendar}></Button>
       </div>
@@ -27,12 +27,12 @@ export class Calendars extends React.Component<ICalendarsProps, {}> {
     console.log('Calendars', this._calendars);
   }
 
-  private _addCalendar = async () => {
-    const calendar: CommandResult<Calendar> = await project.calendars.add({
-      Name: 'Test Calendar ' + Date.now()
-    });
-    console.log(calendar);
-  }
+  // private _addCalendar = async () => {
+  //   const calendar: CommandResult<Calendar> = await project.calendars.add({
+  //     Name: 'Test Calendar ' + Date.now()
+  //   });
+  //   console.log(calendar);
+  // }
 
   private _getCalendarById = async () => {
     const calendar: Calendar = await project.calendars.getById('c421980e-457e-e911-b07c-00155d088c05').get();
@@ -54,23 +54,23 @@ export class Calendars extends React.Component<ICalendarsProps, {}> {
 
   }
 
-  private _addCalendarException = async () => {
-    const calendarException:  CommandResult<CalendarException> = await project.calendars.getById('c421980e-457e-e911-b07c-00155d088c05').baseCalendarExceptions.add({
-      Name: 'Test Calendar exception ' + Date.now(),
-      Start: new Date(2019,1,15),
-      Finish: new Date(2019,12,15),
-      Shift1Start: 1,
-      Shift1Finish: 60,
-      Shift2Start: 1,
-      Shift2Finish: 60,
-      Shift3Start: 1,
-      Shift3Finish: 60,
-      Shift4Start: 1,
-      Shift4Finish: 60,
-      Shift5Start: 1,
-      Shift5Finish: 60,
-    });
-    console.log('Calendar exception', calendarException);
-  }
+  // private _addCalendarException = async () => {
+  //   const calendarException:  CommandResult<CalendarException> = await project.calendars.getById('c421980e-457e-e911-b07c-00155d088c05').baseCalendarExceptions.add({
+  //     Name: 'Test Calendar exception ' + Date.now(),
+  //     Start: new Date(2019,1,15),
+  //     Finish: new Date(2019,12,15),
+  //     Shift1Start: 1,
+  //     Shift1Finish: 60,
+  //     Shift2Start: 1,
+  //     Shift2Finish: 60,
+  //     Shift3Start: 1,
+  //     Shift3Finish: 60,
+  //     Shift4Start: 1,
+  //     Shift4Finish: 60,
+  //     Shift5Start: 1,
+  //     Shift5Finish: 60,
+  //   });
+  //   console.log('Calendar exception', calendarException);
+  // }
 
 }

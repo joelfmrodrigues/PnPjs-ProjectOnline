@@ -2,7 +2,8 @@ import * as React from 'react';
 import styles from './ProjectOnline.module.scss';
 import { IProjectOnlineProps, IProjectOnlineState } from '.';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { Projects } from "./../Projects";
+import { Projects } from "../Projects";
+import { ProjectTasks } from "../ProjectTasks";
 import { Calendars } from '../Calendars';
 
 export class ProjectOnline extends React.Component<IProjectOnlineProps, IProjectOnlineState> {
@@ -26,6 +27,14 @@ export class ProjectOnline extends React.Component<IProjectOnlineProps, IProject
 
           <h3>Projects</h3>
           <Projects projectId={this.state.projectId}></Projects>
+
+          <h3>Project Tasks</h3>
+          <ProjectTasks projectId={this.state.projectId}></ProjectTasks>
+
+
+
+
+
 
           <h3>Calendars</h3>
           <Calendars></Calendars>

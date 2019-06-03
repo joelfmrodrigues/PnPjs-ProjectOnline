@@ -9,7 +9,7 @@ export class Projects extends React.Component<IProjectsProps, {}> {
 
   public render(): React.ReactElement<IProjectsProps> {
     return (
-      <div className={styles.projects}>
+      <div className={styles.buttons}>
         <Button text='Get all projects' onClick={this._getAllProjects}></Button>
         <Button text='Get project by Id' onClick={this._getProjectById}></Button>
         <Button text='Add project' onClick={this._addProject}></Button>
