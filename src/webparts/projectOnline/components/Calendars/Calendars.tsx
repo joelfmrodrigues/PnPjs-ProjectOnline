@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './Calendars.module.scss';
 import { ICalendarsProps } from './ICalendarsProps';
-import { project, Calendar, CommandResult, CalendarCollection, CalendarExceptionCollection, CalendarException } from "@pnp/project";
+import { project, Calendar, CommandResult, CalendarCollection, CalendarExceptionCollection, CalendarException } from "pnpjs-project-online-package";
 import { Button } from "office-ui-fabric-react/lib/Button";
 import { dateAdd } from '@pnp/common';
 

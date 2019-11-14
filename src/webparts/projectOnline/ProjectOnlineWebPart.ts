@@ -7,6 +7,8 @@ import {
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { setup as pnpSetup } from "@pnp/common";
+import { project } from "pnpjs-project-online-package";
+
 
 import * as strings from 'ProjectOnlineWebPartStrings';
 import { ProjectOnline } from './components/ProjectOnline';
@@ -24,7 +26,7 @@ export default class ProjectOnlineWebPart extends BaseClientSideWebPart<IProject
 
       // other init code may be present
 
-      pnpSetup({
+      project.setup({
         spfxContext: this.context
       });
     });

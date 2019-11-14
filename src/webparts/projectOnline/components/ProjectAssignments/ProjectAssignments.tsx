@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './ProjectAssignments.module.scss';
 import { IProjectAssignmentsProps } from './IProjectAssignmentsProps';
-import { project, User, CustomFieldCollection, PublishedAssignmentCollection, Calendar, PublishedTaskLinkCollection, PublishedTask, PublishedAssignment, PublishedProjectResource } from "@pnp/project";
+import { project, User, CustomFieldCollection, PublishedAssignmentCollection, Calendar, PublishedTaskLinkCollection, PublishedTask, PublishedAssignment, PublishedProjectResource } from "pnpjs-project-online-package";
 import { Button } from "office-ui-fabric-react/lib/Button";
 
 export class ProjectAssignments extends React.Component<IProjectAssignmentsProps, {}> {

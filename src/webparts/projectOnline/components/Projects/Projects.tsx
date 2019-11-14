@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './Projects.module.scss';
 import { IProjectsProps } from './IProjectsProps';
-import { project, PublishedProject, ProjectCollection, User, CustomFieldCollection, Phase, ProjectSummaryTask, QueueJobCollection, Stage, PublishedAssignmentCollection, Calendar, DraftProject, PublishedProjectResourceCollection, PublishedTaskLinkCollection, PublishedTaskCollection, CommandResult, QueueJob } from "@pnp/project";
+import { project, PublishedProject, ProjectCollection, User, CustomFieldCollection, Phase, ProjectSummaryTask, QueueJobCollection, Stage, PublishedAssignmentCollection, Calendar, DraftProject, PublishedProjectResourceCollection, PublishedTaskLinkCollection, PublishedTaskCollection, CommandResult, QueueJob } from "pnpjs-project-online-package";
 import { Button } from "office-ui-fabric-react/lib/Button";
 import { TypedHash } from '@pnp/common';
 
